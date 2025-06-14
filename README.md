@@ -1,49 +1,39 @@
 
-# CoderDost MERN Stack E-commerce Project - Backend Repository
 
-🔥🔥 WATCH HERE >> [Project Video](https://youtu.be/LH-S5v-D3hA)
+ Key Highlights:
+Core e-commerce functionality including product catalog, detailed views, shopping cart, and order checkout system.
 
-MERN E-Commerce (in Hindi) with Admin Panel, Redux Toolkit, Stripe Payment, Cloud Deployment, Email Invoice, and many features (complete features given below in Description )
+Integration of secure payment processing (credit/debit) along with cash-on-delivery support.
 
-🔥 Code Repositories:
-- React [frontend] -  https://github.com/coderdost/MERN-ecommerce-Frontend
-- Node [backend] - https://github.com/coderdost/MERN-ecommerce-backend
+Admin dashboard enabling full control over product inventory and customer orders.
 
-🔥Related MasterClasses:
-- React [ 10 Hours ] - https://youtu.be/6l8RWV8D-Yo 
-- NodeJS / Express/ Mongoose [ 12 hours ] - https://youtu.be/ChVE-JbtYbM
-- Redux [ 7 hours ] - https://youtu.be/1zCNdVhdvHE
+Advanced search capabilities with dynamic sorting, filters, and paginated data handling using Mongoose queries.
 
-🔥 Related Videos :
-- Multer Middleware (for file upload) -  https://youtu.be/qfN6c5FEAQQ
-- Mongoose populate - https://youtu.be/VuSt5-AwL8Y
-- Passport  JS Authentication - https://youtu.be/U-S3rgG8hBE
-- JWT Auth  is  from  - Node MasterClass (Link above)
-- Vercel deployment details  - Node MasterClass (Link above)
-- React Router Crash Course: https://bit.ly/36YfO2i
+Robust user authentication handled through Passport strategies for secure login and session management.
 
-🔥 Features :
-- Basic E-commerce Features- Product lists, Product Details, Cart, Checkout 
-- Secure Card Payments / Cash payments
-- Admin Panel - Add/Edit Orders. Add/Edit Products
-- Sorting, Filtering, and Pagination queries using Mongoose
-- Authentication with Passport JS strategies
-- Order Emails, Reset Password Emails
-- User Profile and user orders
+Automated email system for order confirmation, password recovery, and user communication.
 
-🔥 Technical Details :
-- React 18 with Tailwind CSS
-- Redux Toolkit with Async Thunk
-- React Router v6
-- JSON-server for front-end testing
-- MongoDB for Database
-- Mongoose v7 as ODM
-- REST API using Express
-- Authentication using Passport JS
-- API Authentication using Passport JWT
-- MongoDB Atlas cloud database
-- Vercel Server deployment
-- Email using Nodemailer - using GMail SMTP system
-- Payments using Stripe - PaymentIntent based custom flow
+Personalized user profiles with access to individual order history and account settings.
 
+🔧 Tech Stack Overview:
+Frontend: Built with React 18 and styled using Tailwind CSS for a responsive UI.
 
+State Management: Redux Toolkit combined with Async Thunks for streamlined asynchronous data flow.
+
+Routing: Client-side navigation managed by React Router v6.
+
+Frontend Mock API: JSON-server used to simulate backend responses during development.
+
+Database: MongoDB (hosted via MongoDB Atlas) ensures scalable and reliable data storage.
+
+ODM Layer: Mongoose v7 utilized for schema design and database operations.
+
+Backend API: Developed using Express.js to handle RESTful requests.
+
+Authentication: Implemented with Passport.js and JWT for secure API access and session handling.
+
+Deployment: Frontend hosted on Vercel, with backend API deployed for cloud access.
+
+Email Notifications: Nodemailer set up with Gmail SMTP to handle transactional emails.
+
+Payments: Stripe integration using a custom PaymentIntent-based system for flexible checkout flows.
