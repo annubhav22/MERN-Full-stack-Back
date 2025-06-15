@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const {
+  getOrders,
   createOrder,
   fetchAllOrders,
   fetchOrderById,
   updateOrder,
-  getOrders
 } = require('../controller/Order');
 
 // Routes
