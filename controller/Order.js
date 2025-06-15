@@ -12,21 +12,13 @@ const getOrders = async (req, res) => {
   }
 };
 
-exports.createOrder = async (req, res) => {
+const createOrder = async (req, res) => {
   try {
-    const { id } = req.user;
-    const order = await Order.create({ 
-      items: req.body.items,
-      totalAmount: req.body.totalAmount,
-      totalItems: req.body.totalItems,
-      user: id,
-      paymentMethod: req.body.paymentMethod,
-      selectedAddress: req.body.selectedAddress
-    });
-
-    res.json(order);
+    const newOrder = new Order(req.body);
+    const savedOrder = await newOrder.save();
+    res.status(201).json(savedOrder);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
