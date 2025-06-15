@@ -56,7 +56,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-const authRouter = require('./routes/authRoutes');
+const authRouter = require('./routes/Auth');
 app.use('/auth', authRouter);
 
 
