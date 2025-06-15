@@ -5,14 +5,14 @@ const {
   createOrder,
   fetchAllOrders,
   fetchOrderById,
-  updateOrder,
+  updateOrder
 } = require('../controller/Order');
 
 // Routes
-router.post("/", createOrder);             // Create a new order
-router.get("/", fetchAllOrders);           // Get all orders
-router.get("/orders", getOrders);          // Custom or filtered orders
-router.get("/:id", fetchOrderById);        // Get order by ID
-router.patch("/:id", updateOrder);         // Update order by ID
+router.get('/orders', getOrders);
+router.post('/', createOrder);
+router.get('/', fetchAllOrders);
+router.get('/:id', fetchOrderById);
+router.patch('/:id', updateOrder);
 
 module.exports = router;
