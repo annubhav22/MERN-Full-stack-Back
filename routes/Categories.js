@@ -1,8 +1,9 @@
 const express = require('express');
+const router = express.Router();
+
 const { fetchCategories, createCategory } = require('../controller/Category');
 
-const router = express.Router();
-//  /categories is already added in base path
-router.get('/', fetchCategories).post('/',createCategory)
+router.get("/", fetchCategories);
+router.post("/", createCategory);
 
-exports.router = router;
+module.exports = router;

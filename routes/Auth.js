@@ -1,13 +1,16 @@
 const express = require('express');
-const { createUser, loginUser, checkAuth, resetPasswordRequest, resetPassword, logout } = require('../controller/Auth');
+const router = express.Router();
+
+const { createUser, loginUser, checkAuth, resetPasswordRequest, resetPassword, logout } = require('../controller/Auth');  
 const passport = require('passport');
 
-const router = express.Router();
-//  /auth is already added in base path
-router.post('/signup', createUser)
-.post('/login', passport.authenticate('local'), loginUser)
-.get('/check',passport.authenticate('jwt'), checkAuth)
-.get('/logout', logout)
-.post('/reset-password-request', resetPasswordRequest)
-.post('/reset-password', resetPassword)
-exports.router = router;
+// Define routes
+router.post('/signup', createUser);
+router.post('/login', passport.authenticate('local'), loginUser);
+router.get('/check', passport.authenticate('jwt'), checkAuth);
+router.get('/logout', logout);
+router.post('/reset-password-request', resetPasswordRequest);
+router.post('/reset-password', resetPassword);
+
+// ✅ Correct way to export:
+module.exports = router;

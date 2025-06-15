@@ -1,41 +1,19 @@
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
-const { Schema } = mongoose;
- 
 
-const productSchema = new Schema({
-  title: { type: String, required: true, unique: true },
-  description: { type: String, required: true },
-  price: { type: Number, min: [0.01, 'wrong min price'], max: [10000, 'wrong max price'] },
-  discountPercentage: { type: Number, min: [0, 'wrong min discount'], max: [99, 'wrong max discount'] },
-  rating: { type: Number, min: [0, 'wrong min rating'], max: [5, 'wrong max rating'], default: 0 },
-  stock: { type: Number, min: [0, 'wrong min stock'], default: 0 },
-  brand: { type: String, required: true },
-  category: { type: String, required: true },
-  thumbnail: { type: String, required: true },
-  images: { type: [String], required: true },
-  colors: { type: [Schema.Types.Mixed] },
-  sizes: { type: [Schema.Types.Mixed] },
-  highlights: { type: [String] },
+const ProductSchema = new mongoose.Schema({ 
+  title: { type: String, required: true },
+  price: { type: Number, required: true },
+  discountPercentage: { type: Number, default: 0 },
   discountPrice: { type: Number },
+  category: { type: String },
+  brand: { type: String },
   deleted: { type: Boolean, default: false }
 });
 
-// Virtuals
-const virtualId = productSchema.virtual('id');
-virtualId.get(function () {
-  return this._id;
-});
+// Pre-save or post-updates can handle discountPrice, 
+// or you can manually compute it in controller. 
+// We'll omit that here.
 
-productSchema.set('toJSON', {
-  virtuals: true,
-  versionKey: false,
-  transform: function (doc, ret) {
-    delete ret._id;
-  }
-});
+const Product = mongoose.model('Product', ProductSchema);
 
-// Add pagination plugin
-productSchema.plugin(mongoosePaginate);
-
-exports.Product = mongoose.model('Product', productSchema);
+module.exports = { Product };

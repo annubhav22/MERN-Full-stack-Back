@@ -1,12 +1,13 @@
 const express = require('express');
-const { addToCart, fetchCartByUser, deleteFromCart, updateCart } = require('../controller/Cart');
-
 const router = express.Router();
-//  /products is already added in base path
-router.post('/', addToCart)
-      .get('/', fetchCartByUser)
-      .delete('/:id', deleteFromCart)
-      .patch('/:id', updateCart)
 
+const { addToCart, fetchCart, updateCart, deleteFromCart } = require('../controller/Cart');
+const authenticate = require('../middleware/auth');  
 
-exports.router = router;
+// All routes require authentication first
+router.post("/", authenticate, addToCart);
+router.get("/", authenticate, fetchCart);
+router.patch("/:id", authenticate, updateCart);
+router.delete("/:id", authenticate, deleteFromCart);
+
+module.exports = router;

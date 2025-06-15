@@ -1,17 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const {
-  createProduct,
-  fetchAllProducts,
-  fetchProductById,
-  updateProduct
-} = require('../controller/Product'); // ✅ exact path
+const ProductController = require('../controller/Product'); // <- this is an object with methods
 
-router.post('/', createProduct);      // <-- this is where the crash happens if createProduct is undefined
-router.get('/', fetchAllProducts);
-router.get('/:id', fetchProductById);
-router.patch('/:id', updateProduct);
+// Define your routes here
+router.post("/", ProductController.createProduct);
+router.get("/", ProductController.fetchAllProducts);
+router.get("/:id", ProductController.fetchProductById);
+router.patch("/:id", ProductController.updateProduct);
 
-module.exports = { router };
-
+module.exports = router;
