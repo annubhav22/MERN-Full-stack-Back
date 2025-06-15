@@ -56,6 +56,9 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
+const authRouter = require('./routes/authRoutes');
+app.use('/auth', authRouter);
+
 
 // ✅ Handle Stripe Webhook First
 app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
