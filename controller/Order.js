@@ -3,7 +3,7 @@ const express = require('express');
 const { getAllOrders } = require('../controller/Order');
 
 
-exports.getAllOrders = async (req, res) => {
+const getOrders = async (req, res) => {
   try {
     const orders = await Order.find({});
     res.status(200).json(orders);
@@ -39,4 +39,10 @@ exports.fetchOrders = async (req, res) => {
     res.status(400).json(err);
   }
 };
-
+module.exports = {
+  getOrders,
+  createOrder,
+  fetchAllOrders,
+  fetchOrderById,
+  updateOrder
+};
