@@ -1,12 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { getOrders } = require('../controller/Order');
-const { createOrder, fetchAllOrders, fetchOrderById, updateOrder } = require('../controller/Order');
+const {
+  createOrder,
+  fetchAllOrders,
+  fetchOrderById,
+  updateOrder,
+  getOrders
+} = require('../controller/Order');
 
-router.post("/", createOrder);
-router.get("/", fetchAllOrders);
-
-router.get('/orders', getOrders);
-router.patch("/:id", updateOrder);
+// Routes
+router.post("/", createOrder);             // Create a new order
+router.get("/", fetchAllOrders);           // Get all orders
+router.get("/orders", getOrders);          // Custom or filtered orders
+router.get("/:id", fetchOrderById);        // Get order by ID
+router.patch("/:id", updateOrder);         // Update order by ID
 
 module.exports = router;

@@ -3,15 +3,10 @@ const express = require('express');
 const { getAllOrders } = require('../controller/Order');
 
 
-exports.getOrders = async (req, res) => {
-  try {
-    const orders = await Order.find({});
-    res.status(200).json(orders);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+exports.getAllOrders = async (req, res) => {
+  const orders = await Order.find({});
+  res.status(200).json(orders);
 };
-
 exports.createOrder = async (req, res) => {
   try {
     const { id } = req.user;
