@@ -20,10 +20,10 @@ exports.createUser = async (req, res) => {
       310000,
       32,
       'sha256',
-      async function (err, hashedPassword) {
+     async function (err, hashedPassword) {
         if (err) return res.status(500).json({ error: 'Hashing failed' });
 
-        const user = new User({ ...req.body, password: hashedPassword, salt });
+        const user = new User({ ...req.body, passwordHash: hashedPassword });
         const doc = await user.save();
 
         const sanitized = sanitizeUser(doc);
@@ -99,7 +99,7 @@ exports.resetPasswordRequest = async (req, res) => {
     await user.save();
 
     const resetPageLink =
-      `http://localhost:3000/reset-password?token=${token}&email=${email}`;
+      `http://localhost:5000/reset-password?token=${token}&email=${email}`;
     const subject = 'Reset your password for E-Commerce';
     const html = `<p>Click <a href='${resetPageLink}'>here</a> to reset your password</p>`;
 

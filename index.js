@@ -34,28 +34,28 @@ const stripe = require('stripe')(process.env.STRIPE_SERVER_KEY);
 const endpointSecret = process.env.ENDPOINT_SECRET;
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-// ✅ CORS Configuration
 const allowedOrigins = [
-   'http://localhost:3000',
-  process.env.FRONTEND_URL || 'https://mern-full-stack-ffront.onrender.com'
+  'http://localhost:3000',
+  process.env.FRONTEND_URL || 'https://mern-full-stack-front.onrender.com'
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (e.g. mobile apps, Postman)
+    // Allow requests with no origin (mobile apps, curl, Postman)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.error('Blocked by CORS:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true // <-- important if you're using cookies/auth
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-app.use(cors(corsOptions));
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 
 // ✅ Handle Stripe Webhook First
 app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
@@ -76,6 +76,7 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
 });
 
 // ✅ Middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -167,12 +168,15 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // ✅ Database Connection and Server Start
+
+
+
 connectDB()
   .then(() => {
-    app.listen(process.env.PORT || 8080, () => {
-      console.log('Server is up and running');
+    app.listen(PORT, () => {
+      console.log(`✅ Server is up and running on port ${PORT}`);
     });
   })
   .catch(err => {
-    console.error('Failed to connect to DB!', err);
+    console.error('❌ Failed to connect to DB!', err);
   });
