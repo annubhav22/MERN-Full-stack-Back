@@ -11,7 +11,6 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const cookieParser = require('cookie-parser');
 const path = require('path');
-
 // ✅ Models and Utils
 const { User } = require("./model/User");
 const { Order } = require("./model/Order");
@@ -38,7 +37,7 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   'http://localhost:3000',
-  process.env.FRONTEND_URL || 'https://mern-full-stack-front.onrender.com'
+  process.env.FRONTEND_URL || 'https://mern-full-stack-ffront.onrender.com'
 ];
 
 const corsOptions = {
@@ -56,9 +55,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-const authRouter = require('./routes/Auth');
 app.use('/auth', authRouter);
-
 
 // ✅ Handle Stripe Webhook First
 app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
@@ -79,6 +76,7 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
 });
 
 // ✅ Middleware
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
